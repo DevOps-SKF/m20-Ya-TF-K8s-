@@ -23,7 +23,40 @@ kubectl proxy
 *Опциональная часть:*  
 пункты 6-11 выполнить с помощью Ansible, можно использовать готовые плейбуки, но обязательно использование kubeadm
 
+## branch master
+
 ### Remote terraform
 
 remote backend: terraform cloud.  
 Не устраивает, что выполняется в облаке Terraform и требует там же задания environment variables с ключами от Яндекс.Облака.  
+
+### Remote Yandex
+
+Не смог перевести remote backend на Yandex  
+
+    backend "s3" {  
+        endpoint   = "storage.yandexcloud.net"  
+        bucket     = "bsys"  
+        region     = "us-east-1"  
+        key        = "tf/m20-ya-k8s.tfstate"  
+        #access_key = var.yandex_keyid  
+        #secret_key = var.yandex_key  
+    # terraform init -backend-config "access_key=%TF_VAR_yandex_svcacc_keyid%" -backend-config "secret_key=%TF_VAR_yandex_svcacc_key%"  
+        skip_region_validation      = true  
+        skip_credentials_validation = true  
+    }  
+
+    Error: Error loading state:  
+        InvalidBucketName: The specified bucket is not valid.  
+            status code: 400, request id: 69a370f218550c2c, host id:  
+    Terraform failed to load the default state from the "s3" backend.  
+    State migration cannot occur unless the state can be loaded. Backend  
+    modification and state migration has been aborted. The state in both the  
+    source and the destination remain unmodified. Please resolve the  
+    above error and try again.
+
+### Remote AWS
+
+Похоже, достаточно было просто удалить файл .terraform/.terraform.tfstate, чтобы remote backend в Yandex заработал.
+
+Впрочем, все равно могли быть конфликты с переменными окружжения для досутпа к "настоящему" AWS, поскольку используется тот же `backend "s3"`. Так что теперь все state  будут в AWS.  

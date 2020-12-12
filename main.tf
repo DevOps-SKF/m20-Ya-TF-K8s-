@@ -4,17 +4,14 @@ terraform {
       source = "yandex-cloud/yandex"
       version = "0.47.0"
     }
+    aws = {}
   }
-  
-  backend "remote" {
-    hostname = "app.terraform.io"
-    organization = "AKG"
-
-    workspaces {
-      name = "m20-ya-k8s"
-    }
+  backend "s3" {
+    bucket = "bcommon"
+    key    = "tf/m20-ya-k8s.tfstate"
+    # export AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
   }
-}
+}  
 
 provider "yandex" {
   token     = var.yandex_token
@@ -23,9 +20,11 @@ provider "yandex" {
   zone      = var.yandex_zone
 }
 
+provider "aws" {
+}
+
 ###
 
 resource "yandex_vpc_network" "vpc" {
   name = "vpcSKF"
 }
-
