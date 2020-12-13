@@ -1,0 +1,8 @@
+# Установка kubernetes
+---
+- hosts: all
+  tasks:
+    - name: copy install script
+      copy: src="k8s_install.sh" dest="/tmp" mode=755
+    - name: install packages
+      shell: /tmp/k8s_install.sh
