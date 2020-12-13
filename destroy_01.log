@@ -1,0 +1,112 @@
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  [31m-[0m destroy
+[0m
+Terraform will perform the following actions:
+
+[1m  # yandex_compute_instance.vmMaster[0m will be [1m[31mdestroyed[0m[0m
+[0m  [31m-[0m[0m resource "yandex_compute_instance" "vmMaster" {
+      [31m-[0m [0m[1m[0mcreated_at[0m[0m                = "2020-12-12T17:35:02Z" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mfolder_id[0m[0m                 = "b1glta1ihab3pcivkiuo" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mfqdn[0m[0m                      = "vm-master.ru-central1.internal" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mhostname[0m[0m                  = "vm-master" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mid[0m[0m                        = "fhml2c0ecirtsq81jb13" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mlabels[0m[0m                    = {
+          [31m-[0m [0m"purpose" = "k8s"
+        } [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mmetadata[0m[0m                  = {
+          [31m-[0m [0m"ssh-keys" = "ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDTVx0/OQ/vLodJbf15sPp5EbqPd2KZlHUrltsRO0qxIJu8KWb5QkrZ+TfPWNV5P8yzbgLgKZewiPZIiGClnkXKBUsffOiFrGDBtXzO5seEjuNYEYB+L4nekjSrvDMQmxZHUeR94y6OVVX+EYiS1/CwUOSdTYUxK7VWRSJM3tVFMPnQwoSsydIKpfgsdvwnZ1Nz3J9u4q1RYzQ1271q8s8M6kRKlt0gbNABIuY7PETEHACk6MrYF4VggSSQkS+g/y6ixU3vwktvphsRKS78j10uu2LY4ut0r9npuCl4wxAINoWRELPh9d9jSp7SLGZXzaFjmACuslTI8oF4PsU10YRen2uTFggUzhA08f8ZrJXk7jA7B2veeEz+XexLlH0TMfywZw9sn5qDq0w//UKDb2hh9O5MQJWHMLSudGDgzUedB2UdeI26BhyYl/GUzE20SzH4wN6kLWyKh3C4PvSpEBt4zSzQZSJqMxrHpWaYmkAX3as4lk6U1EH87WCbxv7BUJc= generated-by-azure"
+        } [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mname[0m[0m                      = "vm-master" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mnetwork_acceleration_type[0m[0m = "standard" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mplatform_id[0m[0m               = "standard-v2" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mstatus[0m[0m                    = "running" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mzone[0m[0m                      = "ru-central1-a" [90m->[0m [0m[90mnull[0m[0m
+
+      [31m-[0m [0mboot_disk {
+          [31m-[0m [0m[1m[0mauto_delete[0m[0m = true [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mdevice_name[0m[0m = "k8s-master" [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mdisk_id[0m[0m     = "fhmqrejgtca582k7s3vc" [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mmode[0m[0m        = "READ_WRITE" [90m->[0m [0m[90mnull[0m[0m
+
+          [31m-[0m [0minitialize_params {
+              [31m-[0m [0m[1m[0mimage_id[0m[0m = "fd8vmcue7aajpmeo39kk" [90m->[0m [0m[90mnull[0m[0m
+              [31m-[0m [0m[1m[0mname[0m[0m     = "k8s-master" [90m->[0m [0m[90mnull[0m[0m
+              [31m-[0m [0m[1m[0msize[0m[0m     = 32 [90m->[0m [0m[90mnull[0m[0m
+              [31m-[0m [0m[1m[0mtype[0m[0m     = "network-hdd" [90m->[0m [0m[90mnull[0m[0m
+            }
+        }
+
+      [31m-[0m [0mnetwork_interface {
+          [31m-[0m [0m[1m[0mindex[0m[0m              = 0 [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mip_address[0m[0m         = "172.19.0.11" [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mipv4[0m[0m               = true [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mipv6[0m[0m               = false [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mmac_address[0m[0m        = "d0:0d:15:13:00:e6" [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mnat[0m[0m                = true [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mnat_ip_address[0m[0m     = "130.193.38.253" [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mnat_ip_version[0m[0m     = "IPV4" [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0msecurity_group_ids[0m[0m = [] [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0msubnet_id[0m[0m          = "e9b9jala9k1velcfmeaj" [90m->[0m [0m[90mnull[0m[0m
+        }
+
+      [31m-[0m [0mresources {
+          [31m-[0m [0m[1m[0mcore_fraction[0m[0m = 5 [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mcores[0m[0m         = 2 [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mgpus[0m[0m          = 0 [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mmemory[0m[0m        = 1 [90m->[0m [0m[90mnull[0m[0m
+        }
+
+      [31m-[0m [0mscheduling_policy {
+          [31m-[0m [0m[1m[0mpreemptible[0m[0m = true [90m->[0m [0m[90mnull[0m[0m
+        }
+    }
+
+[1m  # yandex_vpc_network.k8s[0m will be [1m[31mdestroyed[0m[0m
+[0m  [31m-[0m[0m resource "yandex_vpc_network" "k8s" {
+      [31m-[0m [0m[1m[0mcreated_at[0m[0m = "2020-12-12T16:54:48Z" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mfolder_id[0m[0m  = "b1glta1ihab3pcivkiuo" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mid[0m[0m         = "enpk5nf4a9gi0mum9fjs" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mlabels[0m[0m     = {
+          [31m-[0m [0m"purpose" = "k8s"
+        } [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mname[0m[0m       = "vpcSKF" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0msubnet_ids[0m[0m = [
+          [31m-[0m [0m"e9b9jala9k1velcfmeaj",
+        ] [90m->[0m [0m[90mnull[0m[0m
+    }
+
+[1m  # yandex_vpc_subnet.k8s[0m will be [1m[31mdestroyed[0m[0m
+[0m  [31m-[0m[0m resource "yandex_vpc_subnet" "k8s" {
+      [31m-[0m [0m[1m[0mcreated_at[0m[0m     = "2020-12-12T16:54:49Z" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mfolder_id[0m[0m      = "b1glta1ihab3pcivkiuo" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mid[0m[0m             = "e9b9jala9k1velcfmeaj" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mlabels[0m[0m         = {
+          [31m-[0m [0m"purpose" = "k8s"
+        } [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mname[0m[0m           = "k8s-172.19.0" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mnetwork_id[0m[0m     = "enpk5nf4a9gi0mum9fjs" [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mv4_cidr_blocks[0m[0m = [
+          [31m-[0m [0m"172.19.0.0/24",
+        ] [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mv6_cidr_blocks[0m[0m = [] [90m->[0m [0m[90mnull[0m[0m
+      [31m-[0m [0m[1m[0mzone[0m[0m           = "ru-central1-a" [90m->[0m [0m[90mnull[0m[0m
+    }
+
+[0m[1mPlan:[0m 0 to add, 0 to change, 3 to destroy.[0m
+
+[0m[1mDo you really want to destroy all resources?[0m
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  [1mEnter a value:[0m [0m
+[0m[1myandex_compute_instance.vmMaster: Destroying... [id=fhml2c0ecirtsq81jb13][0m[0m
+[0m[1myandex_compute_instance.vmMaster: Still destroying... [id=fhml2c0ecirtsq81jb13, 10s elapsed][0m[0m
+[0m[1myandex_compute_instance.vmMaster: Destruction complete after 11s[0m[0m
+[0m[1myandex_vpc_subnet.k8s: Destroying... [id=e9b9jala9k1velcfmeaj][0m[0m
+[0m[1myandex_vpc_subnet.k8s: Destruction complete after 2s[0m[0m
+[0m[1myandex_vpc_network.k8s: Destroying... [id=enpk5nf4a9gi0mum9fjs][0m[0m
+[0m[1myandex_vpc_network.k8s: Destruction complete after 1s[0m[0m
+[0m[1m[32m
+Destroy complete! Resources: 3 destroyed.[0m

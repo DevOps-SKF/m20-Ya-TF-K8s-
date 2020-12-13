@@ -1,0 +1,29 @@
+---
+- hosts: all
+  tasks:
+#    - name: echo config
+#      debug: msg="{{ inventory_hostname }}"
+    - name: Set hostname
+      shell: hostnamectl set-hostname "{{ hostname }}.arlab.pw"
+#      hostname: DEPRECATED ???
+#        name: "{{ hostname }}.arlab.pw"
+    - name: Set timezone 
+      timezone:
+        name: Europe/Moscow
+    - name: copy ddnsclient config
+      copy: src=ddclient.conf dest=/etc/ddclient.conf
+    - name:  replace HOSTNAME
+      replace:
+        path: /etc/ddclient.conf
+        regexp: ^HOSTNAME
+        replace: "{{ hostname }}"
+    - name: install dynamic dns client
+      apt: pkg=ddclient state=latest
+    - name: register service
+      shell: systemctl enable ddclient.service; systemctl restart ddclient.service
+    - name: install fail2ban package
+      apt: pkg=fail2ban state=latest
+    - name: copy fail2ban local config
+      copy: remote_src=yes src=/etc/fail2ban/jail.conf dest=/etc/fail2ban/jail.local owner=root group=root mode=0644
+    - name: Completed
+      debug: msg="Completed"

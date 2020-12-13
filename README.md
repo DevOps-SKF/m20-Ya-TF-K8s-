@@ -59,4 +59,18 @@ remote backend: terraform cloud.
 
 Похоже, достаточно было просто удалить файл .terraform/.terraform.tfstate, чтобы remote backend в Yandex заработал.
 
-Впрочем, все равно могли быть конфликты с переменными окружжения для досутпа к "настоящему" AWS, поскольку используется тот же `backend "s3"`. Так что теперь все state  будут в AWS.  
+Впрочем, все равно могли быть конфликты с переменными окружения для доступа к "настоящему" AWS, поскольку используется тот же `backend "s3"`. Так что теперь все state  будут в AWS.  
+
+### Create VM
+
+https://registry.terraform.io/providers/yandex-cloud/yandex/latest/docs
+
+Узнать disk_id: `yc compute image list --folder-id standard-images`  
+ubuntu-2004-lts: fd8vmcue7aajpmeo39kk
+
+Создалась VM, по публичному IP можно на нее зайти.  
+Теперь Destroy. Вернусь для развертывания Kubernetes.  
+
+### Ansible stdprep
+
+Ansible playbook для первоначальной подготовки хоста (hostname, timezone, ddns client...)
