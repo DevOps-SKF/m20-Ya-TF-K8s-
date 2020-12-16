@@ -113,8 +113,46 @@ https://www.golinuxcloud.com/ansible-architecture/
 При ошибке *ERROR! the playbook: hostname=testaws could not be found* может потребоваться:  
 `$p=$(pwd).Path; docker run -it -v "${p}/.ssh:/root/.ssh" -v "${p}:/workdir" --workdir "/workdir" --rm microsoft/ansible:latest chmod 775 .`
 
+*Важно: Копируемые конфигурационные файлы должны быть сохранены в Unix формате (LF), а не CR/LF.*  
+
 ## Kubernetes installation
 
 ## Prep packages
 
 **k8s.yml**: Устанавливаются необходимые пакеты через скрипт k8s_install.sh (kubelet kubeadm kubectl docker.io)  
+
+## k8s 
+
+**k8s.yml**  
+
+`sudo kubeadm init`  
+Для Master вручную, ибо это единоразовое действие.  
+Также вручную можно установить требуемый CNI.  
+Например, для flannel: `kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml`  
+
+Для worker можно раскомментировать строки с secret, если нужно создать их несколько.  
+
+>To start using your cluster, you need to run the following as a regular user:  
+>  
+>  mkdir -p $HOME/.kube  
+>  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config  
+>  sudo chown $(id -u):$(id -g) $HOME/.kube/config  
+>  
+>Alternatively, if you are the root user, you can run:  
+>  
+>  export KUBECONFIG=/etc/kubernetes/admin.conf  
+>  
+>You should now deploy a pod network to the cluster.  
+>Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:  
+>  https://kubernetes.io/docs/concepts/cluster-administration/addons/  
+>  
+>Then you can join any number of worker nodes by running the following on each as root:  
+>  
+>kubeadm join 172.19.0.11:6443 --token cxvly5.d5uwv2myuwifippp \  
+>    --discovery-token-ca-cert-hash sha256:282039669f63854ae6b3ebaa4c268303328221e05c4506452742d9b294ddbfff  
+
+Для flannel в *kubeadm init* нужно передать параметр *--pod-network-cidr=10.244.0.0/16*  
+Если это не было сделано, и у подов kube-flannel статус CrashLoopBackOff, это можно полечить командами:  
+`kubectl patch node vmmaster -p '{"spec":{"podCIDR":"10.244.0.0/24"}}'`  
+`kubectl patch node vmworker -p '{"spec":{"podCIDR":"10.244.0.0/24"}}'`  
+Имена нод видны в обычном `kubectl get no -o wide` (причем они ready даже при проблемах с CNI).  

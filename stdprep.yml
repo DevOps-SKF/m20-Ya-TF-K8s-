@@ -11,19 +11,29 @@
       timezone:
         name: Europe/Moscow
     - name: copy ddnsclient config
-      copy: src=ddclient.conf dest=/etc/ddclient.conf
+      copy: src=ddclient.conf dest=/etc mode=700
+    - name: copy ddnsclient for daemon
+      copy: src=ddclient dest=/etc/default mode=700
     - name:  replace HOSTNAME
       replace:
         path: /etc/ddclient.conf
         regexp: ^HOSTNAME
         replace: "{{ hostname }}"
     - name: install dynamic dns client
-      apt: pkg=ddclient state=latest
+      apt: pkg=ddclient state=latest update_cache=yes
     - name: register service
-      shell: systemctl enable ddclient.service; systemctl restart ddclient.service
+      shell: |
+        systemctl enable ddclient.service
+        systemctl restart ddclient.service
     - name: install fail2ban package
       apt: pkg=fail2ban state=latest
     - name: copy fail2ban local config
       copy: remote_src=yes src=/etc/fail2ban/jail.conf dest=/etc/fail2ban/jail.local owner=root group=root mode=0644
+    - name: Update and upgrade apt packages
+      become: true
+      apt:
+        upgrade: "yes"
+        update_cache: "yes"
+        cache_valid_time: 86400 #One day
     - name: Completed
       debug: msg="Completed"

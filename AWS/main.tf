@@ -61,7 +61,7 @@ resource "aws_instance" "vmMaster" {
 
   root_block_device = [
     {
-      volume_type = "hdd" # gp2 (SSD);  (Magnetic)
+      volume_type = "st1" # gp2 (General Purpose SSD); st1? (Throughput Optimized HDD)
       volume_size = 10
     },
   ]

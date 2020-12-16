@@ -2,3 +2,4 @@
 .terraform.lock*
 .ssh/
 ddclient.conf
+*.retry

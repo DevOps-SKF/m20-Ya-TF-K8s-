@@ -6,3 +6,11 @@
       copy: src="k8s_install.sh" dest="/tmp" mode=755
     - name: install packages
       shell: /tmp/k8s_install.sh
+      # for master:
+      # sudo kubeadm --pod-network-cidr=10.244.0.0/16 init 
+      # kubeadm apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+    - name: install k8s worker
+      become: true 
+      shell: kubeadm join 172.19.0.11:6443 --token cxvly5.d5uwv2myuwifiphp --discovery-token-ca-cert-hash sha256:282039669f63854ae6b3ebaa4c268303328221e05c4506452742d9b294ddbf5c
+
+
