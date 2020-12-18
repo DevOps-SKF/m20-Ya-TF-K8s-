@@ -47,7 +47,7 @@ resource "yandex_compute_instance" "vmMaster" {
 
   resources {
     cores  = 2
-    memory = 1
+    memory = 2
     core_fraction = 5
   }
 
@@ -64,6 +64,48 @@ resource "yandex_compute_instance" "vmMaster" {
   network_interface {
     subnet_id = yandex_vpc_subnet.k8s.id
     ip_address = "172.19.0.11"
+    nat = true
+    ipv6 = false
+  }
+
+  scheduling_policy {
+    preemptible = true
+  }
+
+  metadata = {
+    ssh-keys    = "ubuntu:${file("~/.ssh/K8s_pub.pem")}"
+  }
+
+  labels = {
+    purpose     = "k8s" 
+  }
+}
+
+resource "yandex_compute_instance" "vmWorker" {
+  name        = "vm-worker"
+  hostname    = "vm-worker"
+  platform_id = "standard-v2"
+  zone        = var.yandex_zone
+
+  resources {
+    cores  = 2
+    memory = 2
+    core_fraction = 5
+  }
+
+  boot_disk {
+    device_name = "k8s-worker"
+    initialize_params {
+      name = "k8s-worker"
+      image_id = "fd8vmcue7aajpmeo39kk" # ubuntu-2004-lts-1590073935
+      size = 32
+      type = "network-hdd"
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.k8s.id
+    ip_address = "172.19.0.12"
     nat = true
     ipv6 = false
   }

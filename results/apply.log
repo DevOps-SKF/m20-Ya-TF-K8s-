@@ -1,0 +1,24 @@
+yandex_vpc_network.k8s: Creating...
+yandex_vpc_network.k8s: Creation complete after 1s [id=enpjnlrooikqj3rm22v7]
+yandex_vpc_subnet.k8s: Creating...
+yandex_vpc_subnet.k8s: Creation complete after 1s [id=e9bpdj4sn8u214mndfeq]
+yandex_compute_instance.vmWorker: Creating...
+yandex_compute_instance.vmMaster: Creating...
+yandex_compute_instance.vmMaster: Still creating... [10s elapsed]
+yandex_compute_instance.vmWorker: Still creating... [10s elapsed]
+yandex_compute_instance.vmMaster: Still creating... [20s elapsed]
+yandex_compute_instance.vmWorker: Still creating... [20s elapsed]
+yandex_compute_instance.vmMaster: Creation complete after 20s [id=fhmnq662r3jr3gvhjvf3]
+local_file.vm-master_ip: Creating...
+local_file.vm-master_ip: Creation complete after 0s [id=30ac02b3e5d2a730c9663c69196c2155e0858e63]
+yandex_compute_instance.vmWorker: Still creating... [30s elapsed]
+yandex_compute_instance.vmWorker: Creation complete after 33s [id=fhmpc4vee2a4uilua5t6]
+local_file.vm-worker_ip: Creating...
+local_file.vm-worker_ip: Creation complete after 0s [id=803ed8653b9718fc39db55a44cd8468d70fcccab]
+
+Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+vm-master_ip = "178.154.231.119"
+vm-worker_ip = "178.154.247.161"
